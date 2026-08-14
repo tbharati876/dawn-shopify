@@ -1,0 +1,131 @@
+{{ 'custom-sections.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="custom-hero"
+  id="hero-{{ section.id }}"
+>
+  <div class="custom-hero__content">
+
+    {% if section.settings.eyebrow != blank %}
+      <p class="custom-hero__eyebrow">
+        {{ section.settings.eyebrow }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class="custom-hero__heading">
+        {{ section.settings.heading }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="custom-hero__description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    <div class="custom-hero__buttons">
+
+      {% if section.settings.button_label != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="custom-button custom-button--primary"
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.button_2_label != blank %}
+        <a
+          href="{{ section.settings.button_2_link }}"
+          class="custom-button custom-button--secondary"
+        >
+          {{ section.settings.button_2_label }}
+        </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  <div class="custom-hero__media">
+
+    {% if section.settings.hero_image != blank %}
+
+      {{
+        section.settings.hero_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'eager',
+          widths: '375, 550, 750, 1100, 1500, 2000',
+          sizes: '(min-width: 750px) 50vw, 100vw',
+          class: 'custom-hero__image',
+          alt: section.settings.hero_image.alt
+      }}
+
+    {% else %}
+
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "DISCOVER MORE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Designed for everyday living"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover products made for your everyday lifestyle.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Secondary button label",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom hero"
+    }
+  ]
+}
+{% endschema %}

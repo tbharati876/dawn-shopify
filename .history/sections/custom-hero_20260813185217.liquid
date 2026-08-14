@@ -1,0 +1,565 @@
+{{ 'custom-sections.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-sections.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign product_1 = section.settings.product_1
+  assign product_2 = section.settings.product_2
+  assign product_3 = section.settings.product_3
+%}
+
+<section
+  id="hero-{{ section.id }}"
+  class="assignment-hero"
+  data-hero-section="{{ section.id }}"
+>
+  <div class="assignment-hero__overlay"></div>
+
+  <div class="assignment-hero__inner page-width">
+
+    <div class="assignment-hero__content">
+
+      {% if section.settings.kicker != blank %}
+        <p class="assignment-hero__kicker">
+          {{ section.settings.kicker }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="assignment-hero__heading">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="assignment-hero__description rte">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      <div class="assignment-hero__actions">
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link | default: '#shop' }}"
+            class="assignment-button assignment-button--primary"
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.secondary_button_label != blank %}
+          <a
+            href="{{ section.settings.secondary_button_link | default: '#bundles' }}"
+            class="assignment-button assignment-button--secondary"
+          >
+            {{ section.settings.secondary_button_label }}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="assignment-hero__promises">
+        {% for block in section.blocks %}
+          {% if block.type == 'promise' %}
+            <div
+              class="assignment-promise"
+              {{ block.shopify_attributes }}
+            >
+              {% case block.settings.icon %}
+                {% when 'leaf' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 4C11 4 5 8 5 15c0 3 2 5 5 5 7 0 10-8 10-16Z"></path>
+                    <path d="M4 20c4-5 8-8 13-11"></path>
+                  </svg>
+
+                {% when 'truck' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h11v10H3z"></path>
+                    <path d="M14 9h4l3 3v4h-7z"></path>
+                    <circle cx="7" cy="18" r="2"></circle>
+                    <circle cx="18" cy="18" r="2"></circle>
+                  </svg>
+
+                {% when 'shield' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                  </svg>
+              {% endcase %}
+
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <div class="assignment-hero__stage-wrapper">
+
+      <div
+        class="assignment-hero__stage"
+        data-hero-stage
+        aria-live="polite"
+      >
+
+        <!-- Slide 1: One product -->
+        <div
+          class="assignment-hero__slide is-active"
+          data-hero-slide="0"
+        >
+          <div class="assignment-hero__products assignment-hero__products--one">
+
+            {% if product_1 != blank %}
+              <a
+                href="{{ product_1.url }}"
+                class="assignment-hero-product assignment-hero-product--single"
+              >
+                {% if product_1.featured_image != blank %}
+                  {{
+                    product_1.featured_image
+                    | image_url: width: 1200
+                    | image_tag:
+                      widths: '375, 550, 750, 900, 1200',
+                      sizes: '(min-width: 750px) 42vw, 80vw',
+                      loading: 'eager',
+                      class: 'assignment-hero-product__image',
+                      alt: product_1.title
+                  }}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'assignment-hero-product__placeholder' }}
+                {% endif %}
+              </a>
+            {% endif %}
+
+          </div>
+
+          <div class="assignment-offer-card">
+            <span class="assignment-offer-card__label">
+              {{ section.settings.offer_1_label }}
+            </span>
+
+            <div class="assignment-offer-card__price">
+              <strong>
+                {% if section.settings.offer_1_price != blank %}
+                  {{ section.settings.offer_1_price }}
+                {% elsif product_1 != blank %}
+                  {{ product_1.price | money }}
+                {% endif %}
+              </strong>
+
+              {% if section.settings.offer_1_compare != blank %}
+                <s>{{ section.settings.offer_1_compare }}</s>
+              {% elsif product_1 != blank and product_1.compare_at_price > product_1.price %}
+                <s>{{ product_1.compare_at_price | money }}</s>
+              {% endif %}
+            </div>
+
+            {% if section.settings.offer_1_save != blank %}
+              <span class="assignment-offer-card__save">
+                {{ section.settings.offer_1_save }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Slide 2: Two products -->
+        <div
+          class="assignment-hero__slide"
+          data-hero-slide="1"
+        >
+          <div class="assignment-hero__products assignment-hero__products--two">
+
+            {% if product_1 != blank %}
+              <a href="{{ product_1.url }}" class="assignment-hero-product assignment-hero-product--left">
+                {% if product_1.featured_image != blank %}
+                  {{
+                    product_1.featured_image
+                    | image_url: width: 900
+                    | image_tag:
+                      widths: '375, 550, 750, 900',
+                      sizes: '(min-width: 750px) 30vw, 45vw',
+                      loading: 'lazy',
+                      class: 'assignment-hero-product__image',
+                      alt: product_1.title
+                  }}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'assignment-hero-product__placeholder' }}
+                {% endif %}
+              </a>
+            {% endif %}
+
+            {% if product_2 != blank %}
+              <a href="{{ product_2.url }}" class="assignment-hero-product assignment-hero-product--right">
+                {% if product_2.featured_image != blank %}
+                  {{
+                    product_2.featured_image
+                    | image_url: width: 900
+                    | image_tag:
+                      widths: '375, 550, 750, 900',
+                      sizes: '(min-width: 750px) 32vw, 48vw',
+                      loading: 'lazy',
+                      class: 'assignment-hero-product__image',
+                      alt: product_2.title
+                  }}
+                {% else %}
+                  {{ 'product-2' | placeholder_svg_tag: 'assignment-hero-product__placeholder' }}
+                {% endif %}
+              </a>
+            {% endif %}
+
+          </div>
+
+          <div class="assignment-offer-card">
+            <span class="assignment-offer-card__label">
+              {{ section.settings.offer_2_label }}
+            </span>
+
+            <div class="assignment-offer-card__price">
+              <strong>{{ section.settings.offer_2_price }}</strong>
+
+              {% if section.settings.offer_2_compare != blank %}
+                <s>{{ section.settings.offer_2_compare }}</s>
+              {% endif %}
+            </div>
+
+            {% if section.settings.offer_2_save != blank %}
+              <span class="assignment-offer-card__save">
+                {{ section.settings.offer_2_save }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Slide 3: Three products -->
+        <div
+          class="assignment-hero__slide"
+          data-hero-slide="2"
+        >
+          <div class="assignment-hero__products assignment-hero__products--three">
+
+            {% if product_1 != blank %}
+              <a href="{{ product_1.url }}" class="assignment-hero-product assignment-hero-product--three-left">
+                {% if product_1.featured_image != blank %}
+                  {{
+                    product_1.featured_image
+                    | image_url: width: 800
+                    | image_tag:
+                      widths: '375, 550, 750, 800',
+                      sizes: '(min-width: 750px) 25vw, 40vw',
+                      loading: 'lazy',
+                      class: 'assignment-hero-product__image',
+                      alt: product_1.title
+                  }}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'assignment-hero-product__placeholder' }}
+                {% endif %}
+              </a>
+            {% endif %}
+
+            {% if product_3 != blank %}
+              <a href="{{ product_3.url }}" class="assignment-hero-product assignment-hero-product--three-center">
+                {% if product_3.featured_image != blank %}
+                  {{
+                    product_3.featured_image
+                    | image_url: width: 1000
+                    | image_tag:
+                      widths: '375, 550, 750, 1000',
+                      sizes: '(min-width: 750px) 32vw, 48vw',
+                      loading: 'lazy',
+                      class: 'assignment-hero-product__image',
+                      alt: product_3.title
+                  }}
+                {% else %}
+                  {{ 'product-3' | placeholder_svg_tag: 'assignment-hero-product__placeholder' }}
+                {% endif %}
+              </a>
+            {% endif %}
+
+            {% if product_2 != blank %}
+              <a href="{{ product_2.url }}" class="assignment-hero-product assignment-hero-product--three-right">
+                {% if product_2.featured_image != blank %}
+                  {{
+                    product_2.featured_image
+                    | image_url: width: 800
+                    | image_tag:
+                      widths: '375, 550, 750, 800',
+                      sizes: '(min-width: 750px) 25vw, 40vw',
+                      loading: 'lazy',
+                      class: 'assignment-hero-product__image',
+                      alt: product_2.title
+                  }}
+                {% else %}
+                  {{ 'product-2' | placeholder_svg_tag: 'assignment-hero-product__placeholder' }}
+                {% endif %}
+              </a>
+            {% endif %}
+
+          </div>
+
+          <div class="assignment-offer-card">
+            <span class="assignment-offer-card__label">
+              {{ section.settings.offer_3_label }}
+            </span>
+
+            <div class="assignment-offer-card__price">
+              <strong>{{ section.settings.offer_3_price }}</strong>
+
+              {% if section.settings.offer_3_compare != blank %}
+                <s>{{ section.settings.offer_3_compare }}</s>
+              {% endif %}
+            </div>
+
+            {% if section.settings.offer_3_save != blank %}
+              <span class="assignment-offer-card__save">
+                {{ section.settings.offer_3_save }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+
+      <div
+        class="assignment-hero__dots"
+        role="tablist"
+        aria-label="Hero product offers"
+      >
+        <button
+          type="button"
+          class="is-active"
+          data-hero-dot="0"
+          aria-label="Show one product offer"
+          aria-selected="true"
+        ></button>
+
+        <button
+          type="button"
+          data-hero-dot="1"
+          aria-label="Show two products offer"
+          aria-selected="false"
+        ></button>
+
+        <button
+          type="button"
+          data-hero-dot="2"
+          aria-label="Show three products offer"
+          aria-selected="false"
+        ></button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom hero",
+  "tag": "section",
+  "class": "section-assignment-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Plant-powered home care"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A cleaner home starts here."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Powerful cleaning without the unnecessary stuff.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Build a bundle"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Hero products"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "header",
+      "content": "One product offer"
+    },
+    {
+      "type": "text",
+      "id": "offer_1_label",
+      "label": "Offer label",
+      "default": "Pick 1 product"
+    },
+    {
+      "type": "text",
+      "id": "offer_1_price",
+      "label": "Offer price"
+    },
+    {
+      "type": "text",
+      "id": "offer_1_compare",
+      "label": "Compare at price"
+    },
+    {
+      "type": "text",
+      "id": "offer_1_save",
+      "label": "Savings text"
+    },
+    {
+      "type": "header",
+      "content": "Two products offer"
+    },
+    {
+      "type": "text",
+      "id": "offer_2_label",
+      "label": "Offer label",
+      "default": "Pick any 2 products"
+    },
+    {
+      "type": "text",
+      "id": "offer_2_price",
+      "label": "Offer price",
+      "default": "₹349"
+    },
+    {
+      "type": "text",
+      "id": "offer_2_compare",
+      "label": "Compare at price",
+      "default": "₹598"
+    },
+    {
+      "type": "text",
+      "id": "offer_2_save",
+      "label": "Savings text",
+      "default": "Save ₹249"
+    },
+    {
+      "type": "header",
+      "content": "Three products offer"
+    },
+    {
+      "type": "text",
+      "id": "offer_3_label",
+      "label": "Offer label",
+      "default": "Pick any 3 products"
+    },
+    {
+      "type": "text",
+      "id": "offer_3_price",
+      "label": "Offer price",
+      "default": "₹499"
+    },
+    {
+      "type": "text",
+      "id": "offer_3_compare",
+      "label": "Compare at price",
+      "default": "₹897"
+    },
+    {
+      "type": "text",
+      "id": "offer_3_save",
+      "label": "Savings text",
+      "default": "Save ₹398"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Promise",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "leaf",
+          "options": [
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            },
+            {
+              "value": "truck",
+              "label": "Truck"
+            },
+            {
+              "value": "shield",
+              "label": "Shield"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Plant powered"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom hero",
+      "blocks": [
+        {
+          "type": "promise",
+          "settings": {
+            "icon": "leaf",
+            "text": "Plant powered"
+          }
+        },
+        {
+          "type": "promise",
+          "settings": {
+            "icon": "truck",
+            "text": "Free shipping"
+          }
+        },
+        {
+          "type": "promise",
+          "settings": {
+            "icon": "shield",
+            "text": "Safe for everyday use"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

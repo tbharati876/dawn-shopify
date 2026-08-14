@@ -1,0 +1,1159 @@
+.section-assignment-hero {
+  position: relative;
+}
+
+.assignment-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  background:
+    linear-gradient(
+      178deg,
+      #1ea38d 0%,
+      #0b8578 22%,
+      #017069 48%,
+      #4b3a8f 74%,
+      #01524e 100%
+    );
+  color: #ece6f7;
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+}
+
+.assignment-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      102deg,
+      rgba(1, 45, 42, 0.68) 0%,
+      rgba(1, 45, 42, 0.4) 30%,
+      rgba(1, 45, 42, 0.1) 52%,
+      transparent 66%
+    );
+}
+
+.assignment-hero__inner {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 30px;
+  align-items: end;
+  padding-top: 150px;
+  padding-bottom: 50px;
+}
+
+.assignment-hero__content {
+  max-width: 600px;
+  padding-bottom: 45px;
+}
+
+.assignment-hero__kicker {
+  margin: 0 0 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(236, 230, 247, 0.72);
+}
+
+.assignment-hero__heading {
+  margin: 0 0 20px;
+  max-width: 9ch;
+  color: #ece6f7;
+  font-family: Outfit, Arial, sans-serif;
+  font-size: clamp(48px, 8.6vw, 112px);
+  font-weight: 800;
+  line-height: 0.87;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 40px rgba(2, 20, 19, 0.55);
+}
+
+.assignment-hero__description {
+  max-width: 44ch;
+  color: rgba(236, 230, 247, 0.8);
+  font-size: clamp(15px, 1.35vw, 17.5px);
+  line-height: 1.6;
+}
+
+.assignment-hero__description p {
+  margin: 0;
+}
+
+.assignment-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.assignment-button {
+  min-height: 48px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background 0.25s ease;
+}
+
+.assignment-button:hover {
+  transform: translateY(-2px);
+}
+
+.assignment-button--primary {
+  background: #f0a03c;
+  color: #08211a;
+}
+
+.assignment-button--secondary {
+  border: 1px solid rgba(236, 230, 247, 0.55);
+  color: #ece6f7;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.assignment-hero__promises {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.assignment-promise {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(236, 230, 247, 0.8);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.assignment-promise svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke: #f0a03c;
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.assignment-hero__stage-wrapper {
+  min-width: 0;
+  position: relative;
+}
+
+.assignment-hero__stage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 74svh, 680px);
+}
+
+.assignment-hero__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.85s ease,
+    visibility 0s linear 0.85s;
+}
+
+.assignment-hero__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.85s ease;
+}
+
+.assignment-hero__products {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 2%;
+}
+
+.assignment-hero-product {
+  display: block;
+  width: auto;
+  position: relative;
+  opacity: 0;
+  transform: translateY(28px) scale(0.94);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  filter: drop-shadow(0 26px 40px rgba(1, 22, 20, 0.66));
+}
+
+.assignment-hero__slide.is-active .assignment-hero-product {
+  opacity: 1;
+  transform: none;
+}
+
+.assignment-hero__slide.is-active .assignment-hero-product:nth-child(1) {
+  transition-delay: 0.06s;
+}
+
+.assignment-hero__slide.is-active .assignment-hero-product:nth-child(2) {
+  transition-delay: 0.3s;
+}
+
+.assignment-hero__slide.is-active .assignment-hero-product:nth-child(3) {
+  transition-delay: 0.54s;
+}
+
+.assignment-hero-product__image,
+.assignment-hero-product__placeholder {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+}
+
+.assignment-hero-product--single {
+  height: 100%;
+  z-index: 3;
+}
+
+.assignment-hero-product--left {
+  height: 80%;
+  margin-right: -8%;
+  z-index: 1;
+}
+
+.assignment-hero-product--right {
+  height: 97%;
+  z-index: 3;
+}
+
+.assignment-hero-product--three-left {
+  height: 75%;
+  margin-right: -8%;
+  z-index: 1;
+}
+
+.assignment-hero-product--three-center {
+  height: 97%;
+  z-index: 3;
+}
+
+.assignment-hero-product--three-right {
+  height: 79%;
+  margin-left: -8%;
+  z-index: 2;
+}
+
+.assignment-offer-card {
+  position: absolute;
+  left: 0;
+  bottom: 2%;
+  z-index: 10;
+  max-width: 52%;
+  padding: 11px 14px 12px;
+  border: 1px solid rgba(236, 230, 247, 0.2);
+  border-radius: 16px;
+  background: rgba(2, 35, 32, 0.42);
+  backdrop-filter: blur(14px);
+  color: #ece6f7;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.8s ease 0.62s,
+    transform 0.8s ease 0.62s;
+}
+
+.assignment-hero__slide.is-active .assignment-offer-card {
+  opacity: 1;
+  transform: none;
+}
+
+.assignment-offer-card__label {
+  display: block;
+  color: #f0a03c;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.assignment-offer-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+.assignment-offer-card__price strong {
+  font-family: Outfit, Arial, sans-serif;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.assignment-offer-card__price s {
+  color: rgba(236, 230, 247, 0.5);
+  font-size: 12px;
+}
+
+.assignment-offer-card__save {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 3px 8px;
+  border: 1px solid rgba(240, 160, 60, 0.38);
+  border-radius: 999px;
+  background: rgba(240, 160, 60, 0.2);
+  color: #f0a03c;
+  font-size: 8.4px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.assignment-hero__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.assignment-hero__dots button {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(236, 230, 247, 0.28);
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.assignment-hero__dots button.is-active {
+  width: 20px;
+  background: #f0a03c;
+}
+
+.assignment-hero__dots button:hover {
+  background: rgba(236, 230, 247, 0.65);
+}
+
+.assignment-hero a:focus-visible,
+.assignment-hero button:focus-visible {
+  outline: 2px solid #f0a03c;
+  outline-offset: 4px;
+}
+
+@media screen and (max-width: 900px) {
+  .assignment-hero {
+    align-items: flex-end;
+  }
+
+  .assignment-hero__overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(1, 45, 42, 0.44) 0%,
+        rgba(1, 45, 42, 0.22) 34%,
+        rgba(1, 40, 38, 0.6) 100%
+      );
+  }
+
+  .assignment-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-top: 120px;
+    padding-bottom: 28px;
+  }
+
+  .assignment-hero__content {
+    max-width: 620px;
+    padding-bottom: 20px;
+  }
+
+  .assignment-hero__heading {
+    max-width: 10ch;
+  }
+
+  .assignment-hero__stage {
+    height: clamp(300px, 44svh, 430px);
+  }
+
+  .assignment-offer-card {
+    max-width: 58%;
+    padding: 9px 12px 10px;
+    border-radius: 14px;
+  }
+
+  .assignment-offer-card__price strong {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .assignment-hero__inner {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .assignment-hero__heading {
+    font-size: clamp(48px, 15vw, 72px);
+  }
+
+  .assignment-hero__actions {
+    width: 100%;
+  }
+
+  .assignment-button {
+    flex: 1 1 auto;
+  }
+
+  .assignment-hero__promises {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .assignment-promise {
+    min-height: 66px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 5px;
+    border: 1px solid rgba(236, 230, 247, 0.12);
+    border-radius: 14px;
+    font-size: 8px;
+    line-height: 1.3;
+  }
+
+  .assignment-promise svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assignment-hero *,
+  .assignment-hero *::before,
+  .assignment-hero *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+/* =========================================
+   SHOP / PRODUCT GRID
+========================================= */
+
+.assignment-shop {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.assignment-shop__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.assignment-shop__eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.assignment-shop__heading {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.assignment-shop__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.assignment-shop__view-all span {
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.assignment-shop__view-all:hover span {
+  transform: translateX(4px);
+}
+
+.assignment-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.assignment-product-card {
+  min-width: 0;
+}
+
+.assignment-product-card__image-wrapper {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.1;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.assignment-product-card__image,
+.assignment-product-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.assignment-product-card__image-wrapper:hover
+.assignment-product-card__image {
+  transform: scale(1.04);
+}
+
+.assignment-product-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #222;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.assignment-product-card__content {
+  padding-top: 14px;
+}
+
+.assignment-product-card__title {
+  margin: 0;
+  min-height: 2.8em;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.assignment-product-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.assignment-product-card__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.assignment-product-card__price-current {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.assignment-product-card__price-compare {
+  font-size: 13px;
+  opacity: 0.55;
+}
+
+.assignment-product-card__form {
+  margin-top: 14px;
+}
+
+.assignment-product-card__button {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.assignment-product-card__button:hover:not(:disabled) {
+  background: #111;
+  color: #fff;
+}
+
+.assignment-product-card__button--sold-out {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.assignment-product-card__button:focus-visible,
+.assignment-shop__view-all:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.assignment-shop__empty {
+  padding: 50px;
+  text-align: center;
+  border: 1px dashed currentColor;
+  opacity: 0.65;
+}
+
+@media screen and (max-width: 989px) {
+  .assignment-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .assignment-shop {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  .assignment-shop__header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 25px;
+  }
+
+  .assignment-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .assignment-product-card__title {
+    font-size: 14px;
+  }
+
+  .assignment-product-card__button {
+    min-height: 40px;
+    font-size: 12px;
+  }
+}
+/* =========================================
+   SHARED SECTION HEADING
+========================================= */
+
+.assignment-section-heading {
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.assignment-section-heading--center {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.assignment-section-heading__eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.assignment-section-heading h2,
+.assignment-reviews__header h2 {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.assignment-section-heading p {
+  max-width: 600px;
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.72;
+}
+
+.assignment-section-heading--center p {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/* =========================================
+   BEST-SELLING COMBOS
+========================================= */
+
+.assignment-combos {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.assignment-combos__rail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.assignment-combo-card {
+  position: relative;
+  flex: 0 0 min(380px, 85vw);
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgb(var(--color-background));
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+  scroll-snap-align: start;
+}
+
+.assignment-combo-card__visual {
+  position: relative;
+  min-height: 280px;
+  padding: 32px 20px 20px;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.assignment-combo-card__badge,
+.assignment-bundle-card__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.assignment-combo-card__products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  min-height: 220px;
+}
+
+.assignment-combo-card__product {
+  flex: 1 1 0;
+  max-width: 120px;
+}
+
+.assignment-combo-card__image,
+.assignment-combo-card__placeholder {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+}
+
+.assignment-combo-card__plus {
+  flex: 0 0 auto;
+  font-size: 26px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.assignment-combo-card__body {
+  padding: 24px;
+}
+
+.assignment-combo-card__body h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.assignment-combo-card__count {
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.assignment-combo-card__description {
+  min-height: 48px;
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+.assignment-combo-card__price {
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.assignment-combo-card__button,
+.assignment-bundle-card__button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 20px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.assignment-combo-card__button:hover,
+.assignment-bundle-card__button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.assignment-combo-card__button:focus-visible,
+.assignment-bundle-card__button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.assignment-combos__rail-note {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+
+/* =========================================
+   BUNDLES
+========================================= */
+
+.assignment-bundles {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.assignment-bundles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.assignment-bundle-card {
+  position: relative;
+  min-width: 0;
+  border-radius: 18px;
+  background: rgba(var(--color-foreground), 0.04);
+  overflow: hidden;
+}
+
+.assignment-bundle-card__content {
+  padding: 32px;
+}
+
+.assignment-bundle-card__content h3 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.assignment-bundle-card__description {
+  min-height: 50px;
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.assignment-bundle-card__products {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.assignment-bundle-card__product {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgb(var(--color-background));
+}
+
+.assignment-bundle-card__image,
+.assignment-bundle-card__placeholder {
+  width: 70px;
+  height: 70px;
+  flex: 0 0 70px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.assignment-bundle-card__product span {
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.assignment-bundle-card__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(var(--color-foreground), 0.12);
+}
+
+.assignment-bundle-card__summary span {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.assignment-bundle-card__summary strong {
+  font-size: 22px;
+}
+
+
+/* =========================================
+   REVIEWS RAIL
+========================================= */
+
+.assignment-reviews {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.assignment-reviews__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.assignment-reviews__controls {
+  display: flex;
+  gap: 10px;
+}
+
+.assignment-reviews__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 20px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.assignment-reviews__arrow:hover {
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+}
+
+.assignment-reviews__arrow:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.assignment-reviews__description {
+  max-width: 600px;
+  margin: 16px 0 32px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.assignment-reviews__rail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.assignment-review-card {
+  display: flex;
+  flex: 0 0 min(390px, 85vw);
+  flex-direction: column;
+  min-height: 310px;
+  padding: 28px;
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+  border-radius: 16px;
+  background: rgb(var(--color-background));
+  scroll-snap-align: start;
+}
+
+.assignment-review-card__stars {
+  display: flex;
+  gap: 3px;
+  font-size: 17px;
+}
+
+.assignment-review-card__star-empty {
+  opacity: 0.25;
+}
+
+.assignment-review-card__quote {
+  flex-grow: 1;
+  margin: 24px 0;
+  font-size: 19px;
+  line-height: 1.5;
+  font-style: normal;
+}
+
+.assignment-review-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assignment-review-card__avatar {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.assignment-review-card__avatar--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-foreground), 0.1);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.assignment-review-card__author strong,
+.assignment-review-card__author span {
+  display: block;
+}
+
+.assignment-review-card__author strong {
+  font-size: 14px;
+}
+
+.assignment-review-card__author span {
+  margin-top: 3px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media screen and (max-width: 989px) {
+
+  .assignment-bundles__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media screen and (max-width: 749px) {
+
+  .assignment-combos,
+  .assignment-bundles,
+  .assignment-reviews {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  .assignment-section-heading {
+    margin-bottom: 28px;
+  }
+
+  .assignment-combo-card__visual {
+    min-height: 240px;
+  }
+
+  .assignment-combo-card__image,
+  .assignment-combo-card__placeholder {
+    height: 160px;
+  }
+
+  .assignment-bundles__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .assignment-bundle-card__content {
+    padding: 24px;
+  }
+
+  .assignment-bundle-card__content h3 {
+    font-size: 24px;
+  }
+
+  .assignment-reviews__header {
+    align-items: flex-start;
+  }
+
+  .assignment-reviews__controls {
+    display: none;
+  }
+
+  .assignment-review-card {
+    min-height: 280px;
+    padding: 24px;
+  }
+
+  .assignment-review-card__quote {
+    font-size: 17px;
+  }
+
+}
