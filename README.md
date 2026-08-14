@@ -38,7 +38,7 @@ https://bharathi-troopod-assignment.myshopify.com
 
 ## Storefront Password
 
-`STOREFRONT_PASSWORD`
+`OUR_STORE_PASSWORD`
 
 # Homepage Sections
 
@@ -445,4 +445,4 @@ https://bharathi-troopod-assignment.myshopify.com
 
 ## Storefront Password
 
-`STOREFRONT_PASSWORD`
+`OUR_STORE_PASSWORD`
